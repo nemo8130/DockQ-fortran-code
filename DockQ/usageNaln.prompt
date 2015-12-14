@@ -1,0 +1,23 @@
+# =====================================================================================================================================================
+#
+#
+# The Script './calDockQNoaln.bash' calculates the combined Quality measure 'DockQ' for a given pair of model and native structures. 
+# It assumes an alignemnet based on matching of residue sequence numbers and chain identifiers from the two files 
+#
+# USAGE: ./calDockQNoaln.bash model.pdb native.pdb -CA (1/0) 
+#
+#
+# OPTIONAL (flag) ARGUMENTS:
+#
+# -CA : (0/1) : Choice between CA-only (~6.5X FASTER) or all-atom version of the program
+#  0: all-atoms
+#  1: CA-only
+#  Default: CA-only
+#
+# DEFAULT-UASGE: ./calDockQNoaln.bash model.pdb native.pdb          (will run the CA-only version)
+#
+# The program also outputs a RASMOL script to display the interface contact network of the native structure for visualization. 
+# The same could also be generated for the model by reverting the order of the two input files.
+# To view the network, use: rasmol -script native_filename.spt
+# ======================================================================================================================================================
+#
