@@ -27,9 +27,9 @@ chfort=`which $fcomp`
         fi
 
 
-$fcomp $path/SRC/DockQ.f -o $path/SRC/DockQ.exe -O3
-$fcomp $path/SRC/DockQCA.f -o $path/SRC/DockQCA.exe -O3
+$fcomp $path/src/DockQfast.f -o $path/DockQ.exe -O3
+#$fcomp $path/SRC/DockQCA.f -o $path/SRC/DockQCA.exe -O3
 
 echo "Installation Successful" 
-cat usage.prompt
+cat README
 
