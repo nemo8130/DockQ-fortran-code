@@ -1,0 +1,160 @@
+load pdb EXAMPLE_PDBS/native2_fixed.pdb-unet.pdb
+wireframe off
+ribbon
+color chain
+select (atomno=530) or (atomno=2526)
+wireframe 40
+color bond yellow
+select (atomno=746) or (atomno=2259)
+wireframe 40
+color bond yellow
+select (atomno=1301) or (atomno=2499)
+wireframe 40
+color bond yellow
+select (atomno=1301) or (atomno=2510)
+wireframe 40
+color bond yellow
+select (atomno=1315) or (atomno=2499)
+wireframe 40
+color bond yellow
+select (atomno=1315) or (atomno=2510)
+wireframe 40
+color bond yellow
+select (atomno=1315) or (atomno=2514)
+wireframe 40
+color bond yellow
+select (atomno=1324) or (atomno=2510)
+wireframe 40
+color bond yellow
+select (atomno=1324) or (atomno=2514)
+wireframe 40
+color bond yellow
+select (atomno=1328) or (atomno=2510)
+wireframe 40
+color bond yellow
+select (atomno=1442) or (atomno=2490)
+wireframe 40
+color bond yellow
+select (atomno=1442) or (atomno=2499)
+wireframe 40
+color bond yellow
+select (atomno=1450) or (atomno=2079)
+wireframe 40
+color bond yellow
+select (atomno=1450) or (atomno=2490)
+wireframe 40
+color bond yellow
+select (atomno=1450) or (atomno=2499)
+wireframe 40
+color bond yellow
+select (atomno=1457) or (atomno=2490)
+wireframe 40
+color bond yellow
+select (atomno=1690) or (atomno=2468)
+wireframe 40
+color bond yellow
+select (atomno=1712) or (atomno=2463)
+wireframe 40
+color bond yellow
+select (atomno=1712) or (atomno=2468)
+wireframe 40
+color bond yellow
+select (atomno=1720) or (atomno=2463)
+wireframe 40
+color bond yellow
+select (atomno=1720) or (atomno=2468)
+wireframe 40
+color bond yellow
+select (atomno=1735) or (atomno=2254)
+wireframe 40
+color bond yellow
+select (atomno=1735) or (atomno=2274)
+wireframe 40
+color bond yellow
+select (atomno=1938) or (atomno=2472)
+wireframe 40
+color bond yellow
+select (atomno=1938) or (atomno=2499)
+wireframe 40
+color bond yellow
+select (atomno=1946) or (atomno=2259)
+wireframe 40
+color bond yellow
+select (atomno=1951) or (atomno=2254)
+wireframe 40
+color bond yellow
+select (atomno=1951) or (atomno=2259)
+wireframe 40
+color bond yellow
+select (atomno=1951) or (atomno=2266)
+wireframe 40
+color bond yellow
+select (atomno=1951) or (atomno=2274)
+wireframe 40
+color bond yellow
+select (atomno=1951) or (atomno=2526)
+wireframe 40
+color bond yellow
+select (atomno=1959) or (atomno=2259)
+wireframe 40
+color bond yellow
+select (atomno=1959) or (atomno=2266)
+wireframe 40
+color bond yellow
+select (atomno=1959) or (atomno=2274)
+wireframe 40
+color bond yellow
+select (atomno=1959) or (atomno=2526)
+wireframe 40
+color bond yellow
+select (atomno=1959) or (atomno=2537)
+wireframe 40
+color bond yellow
+select (atomno=1959) or (atomno=2545)
+wireframe 40
+color bond yellow
+select (atomno=1969) or (atomno=2259)
+wireframe 40
+color bond yellow
+select (atomno=1969) or (atomno=2266)
+wireframe 40
+color bond yellow
+select (atomno=1969) or (atomno=2526)
+wireframe 40
+color bond yellow
+select (atomno=1969) or (atomno=2537)
+wireframe 40
+color bond yellow
+select (atomno=1969) or (atomno=2545)
+wireframe 40
+color bond yellow
+select (atomno=1969) or (atomno=2549)
+wireframe 40
+color bond yellow
+select (atomno=1969) or (atomno=2573)
+wireframe 40
+color bond yellow
+select (atomno=1977) or (atomno=2259)
+wireframe 40
+color bond yellow
+select (atomno=1977) or (atomno=2266)
+wireframe 40
+color bond yellow
+select (atomno=1977) or (atomno=2545)
+wireframe 40
+color bond yellow
+select (atomno=1988) or (atomno=2247)
+wireframe 40
+color bond yellow
+select (atomno=1988) or (atomno=2254)
+wireframe 40
+color bond yellow
+select (atomno=1988) or (atomno=2259)
+wireframe 40
+color bond yellow
+select (atomno=1988) or (atomno=2266)
+wireframe 40
+color bond yellow
+select (atomno=1988) or (atomno=2545)
+wireframe 40
+color bond yellow
