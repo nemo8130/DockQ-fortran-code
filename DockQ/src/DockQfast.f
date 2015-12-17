@@ -205,7 +205,7 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       chain1 = chA(1)
       chain2 = chA(nseqA)
       else 
-!      print*, chA(1),'  ',chB(1),'      ',chA(nseqA),'  ',chB(nseqB)
+      print*, chA(1),'  ',chB(1),'      ',chA(nseqA),'  ',chB(nseqB)
       print*,'CHIAN IDs DOES NOT MATCH IN THE TWO FILES. EXITING'
       goto 555
       endif
@@ -366,6 +366,8 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
            endif
       enddo
 
+       iintR = iint
+
 !      print*,'Number of native contacts at the receptor-ligand interface
 !     & :',icontN
 
@@ -433,7 +435,17 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 !     PULL UP ALL NATIVE INTERFACIAL RESIDUES 
 !===================================================================
 
-!      print*,'Nintres receptor, ligand defined at 10 A:',iint
+       iintL = iint - iintR
+
+      write(*,921)'Number of equivalent residues at the 
+     &interface:',iintR, 
+     & ' (receptor: ',chainsup,')',iintL,' (ligand: ',chaincal,')'
+      write(*,922)'<=== defined at an all-atom 
+     &atomic cutoff of',cutdistI,'Å 
+     &(iRMS) ===>'
+
+921   format(a50,2x,i5,2x,a12,1x,a1,a1,2x,i5,2x,a10,2x,a1,a1)
+922   format(a50,2x,f5.2,2x,a15)
 
 !      do i = 1,iint
 !      write(*,*)nintAB(i),'  ',chAB(i)
@@ -537,13 +549,13 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       fnonat=float(inonat)/float(icontM)
 
       write(*,181)'fnat: ',fnat,ipres,'correct out of',icontN,'native 
-     &contacts'
+     &contacts at the receptor-ligand interface'
 
       write(*,182)'fnonat: ',fnonat,inonat,'non-native out of',icontM,
-     &'model contacts'
+     &'model contacts at the receptor-ligand interface'
 
-181    format(a10,f8.3,':',i5,a20,i5,a20)
-182    format(a10,f8.3,':',i5,a20,i5,a20)
+181    format(a10,f8.3,':',i5,a20,i5,a50)
+182    format(a10,f8.3,':',i5,a20,i5,a50)
 
 !      print*,'------------------------------'
 
@@ -554,13 +566,6 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 829   format(a9,a80)
-
-!99    format(a7,i3,a6,a1,a5,'*',a3)
-!856   format(a9)
-!91    format(i4,2x,a1,5x,i4,2x,a1,2x,i5)
-!92    format(i3,a1,a3,a1,a1,2x,i3,a1,a3,a1,a1)
-!93    format(a3,2x,i4,2x,a1,5x,i4,2x,a1,2x,i5)
-!95    format(i3,a1,a3,a1,a1)
 
 !      print*,'Total number of int res',iint
 
@@ -775,9 +780,7 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       
 !      print*,'Number of receptor atoms used for superposition: ',in1
 
-!621   continue
 
-!      call u3b(w,r_1,r_2,n_ali,1,rms,u,t,ier) !u rotate r_1 to r_2
       call u3b(w,r_1,r_2,in1,1,rms,u,t,ier) !u rotate r_1 to r_2
       rmsd=dsqrt(rms/in1)
 !      print*,'Receptor-RMS_progsub: ',rmsd
