@@ -892,7 +892,7 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       c3 = 0.80
 
       capstat = ''
-      print*,DockQ
+!      print*,DockQ
 
       if(DockQ < c1)then
         capstat='Incorrect'
@@ -907,7 +907,7 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         capstat='Undef'
       endif
 
-      print*,capstat
+!      print*,capstat
 
       write(245,234)fnat,lrms,irms,DockQ
       write(*,234)fnat,lrms,irms,DockQ
