@@ -1,0 +1,172 @@
+load pdb EXAMPLE_PDBS/native_fixed.pdb.raspdb
+wireframe off
+ribbon
+color chain
+select (atomno=1929) or (atomno=8027)
+wireframe 40
+color bond yellow
+select (atomno=2200) or (atomno=8013)
+wireframe 40
+color bond yellow
+select (atomno=2215) or (atomno=8027)
+wireframe 40
+color bond yellow
+select (atomno=2248) or (atomno=8027)
+wireframe 40
+color bond yellow
+select (atomno=2267) or (atomno=8027)
+wireframe 40
+color bond yellow
+select (atomno=2267) or (atomno=8090)
+wireframe 40
+color bond yellow
+select (atomno=2274) or (atomno=8027)
+wireframe 40
+color bond yellow
+select (atomno=2274) or (atomno=8090)
+wireframe 40
+color bond yellow
+select (atomno=2291) or (atomno=7551)
+wireframe 40
+color bond yellow
+select (atomno=2291) or (atomno=7568)
+wireframe 40
+color bond yellow
+select (atomno=2291) or (atomno=8041)
+wireframe 40
+color bond yellow
+select (atomno=2291) or (atomno=8090)
+wireframe 40
+color bond yellow
+select (atomno=2307) or (atomno=7568)
+wireframe 40
+color bond yellow
+select (atomno=2496) or (atomno=9257)
+wireframe 40
+color bond yellow
+select (atomno=2515) or (atomno=9238)
+wireframe 40
+color bond yellow
+select (atomno=2515) or (atomno=9257)
+wireframe 40
+color bond yellow
+select (atomno=2668) or (atomno=6081)
+wireframe 40
+color bond yellow
+select (atomno=2668) or (atomno=7568)
+wireframe 40
+color bond yellow
+select (atomno=2668) or (atomno=7590)
+wireframe 40
+color bond yellow
+select (atomno=2680) or (atomno=6081)
+wireframe 40
+color bond yellow
+select (atomno=2680) or (atomno=7590)
+wireframe 40
+color bond yellow
+select (atomno=2695) or (atomno=7568)
+wireframe 40
+color bond yellow
+select (atomno=2695) or (atomno=7590)
+wireframe 40
+color bond yellow
+select (atomno=2695) or (atomno=7643)
+wireframe 40
+color bond yellow
+select (atomno=2731) or (atomno=8090)
+wireframe 40
+color bond yellow
+select (atomno=2783) or (atomno=9238)
+wireframe 40
+color bond yellow
+select (atomno=2835) or (atomno=9238)
+wireframe 40
+color bond yellow
+select (atomno=2852) or (atomno=8079)
+wireframe 40
+color bond yellow
+select (atomno=2863) or (atomno=8079)
+wireframe 40
+color bond yellow
+select (atomno=2863) or (atomno=8601)
+wireframe 40
+color bond yellow
+select (atomno=2863) or (atomno=8618)
+wireframe 40
+color bond yellow
+select (atomno=2863) or (atomno=8632)
+wireframe 40
+color bond yellow
+select (atomno=2863) or (atomno=9214)
+wireframe 40
+color bond yellow
+select (atomno=2883) or (atomno=8632)
+wireframe 40
+color bond yellow
+select (atomno=2883) or (atomno=9200)
+wireframe 40
+color bond yellow
+select (atomno=2883) or (atomno=9214)
+wireframe 40
+color bond yellow
+select (atomno=2883) or (atomno=9238)
+wireframe 40
+color bond yellow
+select (atomno=2902) or (atomno=7712)
+wireframe 40
+color bond yellow
+select (atomno=2902) or (atomno=8079)
+wireframe 40
+color bond yellow
+select (atomno=2902) or (atomno=8090)
+wireframe 40
+color bond yellow
+select (atomno=2902) or (atomno=8136)
+wireframe 40
+color bond yellow
+select (atomno=2918) or (atomno=7712)
+wireframe 40
+color bond yellow
+select (atomno=2918) or (atomno=8136)
+wireframe 40
+color bond yellow
+select (atomno=2930) or (atomno=8136)
+wireframe 40
+color bond yellow
+select (atomno=2952) or (atomno=7629)
+wireframe 40
+color bond yellow
+select (atomno=2952) or (atomno=8090)
+wireframe 40
+color bond yellow
+select (atomno=2952) or (atomno=8136)
+wireframe 40
+color bond yellow
+select (atomno=2995) or (atomno=6116)
+wireframe 40
+color bond yellow
+select (atomno=2995) or (atomno=6132)
+wireframe 40
+color bond yellow
+select (atomno=2995) or (atomno=6143)
+wireframe 40
+color bond yellow
+select (atomno=2995) or (atomno=6157)
+wireframe 40
+color bond yellow
+select (atomno=2995) or (atomno=7629)
+wireframe 40
+color bond yellow
+select (atomno=2995) or (atomno=7643)
+wireframe 40
+color bond yellow
+select (atomno=3015) or (atomno=6116)
+wireframe 40
+color bond yellow
+select (atomno=3022) or (atomno=6116)
+wireframe 40
+color bond yellow
+select (atomno=3039) or (atomno=6116)
+wireframe 40
+color bond yellow
