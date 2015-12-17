@@ -26,10 +26,12 @@ chfort=`which $fcomp`
 	echo $fcomp "FOUND TO BE INSTALLED AT " $chfort
         fi
 
+rm $path/DockQ.exe
 
 $fcomp $path/src/DockQfast.f -o $path/DockQ.exe -O3
 #$fcomp $path/SRC/DockQCA.f -o $path/SRC/DockQCA.exe -O3
-
+if [ -e "$path/DockQ.exe" ]; then
 echo "Installation Successful" 
+fi
 cat README
 

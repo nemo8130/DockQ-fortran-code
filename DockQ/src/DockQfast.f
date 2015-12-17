@@ -20,10 +20,12 @@
       dimension k_ali(nmax),k_ali0(nmax)
 
       character*500 fnam,pdbnat,pdbmod,outname1,outname2,cho,cht,pdb(2)
+      character*500 outfile
       character*3 aa(-1:20),seqA(nmax),seqB(nmax)
       character(3)::atomA(nmax),atomB(nmax),res1,res2,res1m,res2m
       character*500 s,du
-      character(20)::capstat
+      character(4)::ras
+      character(20)::capstat,capstatO
       character seq1A(nmax),seq1B(nmax),ali(nmax)
       character sequenceA(nmax),sequenceB(nmax),sequenceM(nmax)
       character(1)::chA(nmax),chB(nmax),chain1,chain2,chainsup,
@@ -54,6 +56,7 @@ ccc
       cutdist = 5.00 ! (Between any two atoms)
       cutdistI = 10.00 ! (Between any two atoms)
       cutarb = 16.00 ! (Upper threshold beyond which exhaustive pairwise atomic contact calculation is not considered for a given residue pair)
+      iras = 0
 
 
 *****instructions ----------------->
@@ -61,7 +64,12 @@ ccc
       if(fnam.eq.' '.or.fnam.eq.'?'.or.fnam.eq.'-h')then
         write(*,*)'-------------------------------------------'
         write(*,*)
-        write(*,*)'Usage: ./DockQ.exe model.pdb native.pdb'
+        write(*,*)'Usage (Default): ./DockQ.exe model.pdb native.pdb'
+        write(*,*)'Usage (Optional): ./DockQ.exe model.pdb native.pdb 
+     &-ras (0/1)'
+        write(*,787)'The -ras flag (=1) generates the inputs to the
+     & rasmol script'
+787     format(a61)
         write(*,*)'PDB files must be pre-aligned'
         write(*,*)
         write(*,*)'-------------------------------------------'
@@ -81,14 +89,32 @@ ccc
       call getarg(i,fnam)
          j=j+1
          pdb(j)=fnam
+         irasflag=0
+          if (i==3)then
+              ras=fnam
+              if (ras .eq. "-ras")then
+              irasflag=1
+              goto 991
+              endif
+          endif
+    
       if(i.lt.narg)goto 115
+
+991   continue
+
+      if (irasflag==1)then
+      call getarg(4,fnam)
+      ras=fnam
+      read(ras,812)iras
+      endif
+
+812   format(i5)
 
       pdbmod = pdb(1)
       pdbnat = pdb(2)
+!      outfile = pdbmod//'ON'//pdbnat//'.DockQ'
+!      print*,outfile
 
-!      call getarg(3,outname1)
-!      call getarg(4,outname2)
-!      print*,outname1,outname2
 ******* options ----------->
 ccccccccc read data from first CA file:
 !==============================================================
@@ -244,11 +270,12 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 !===================================================================================================
 !===================================================================================================
 
-!      write(27,829)'load pdb ',pdbnat
-!      write(27,*)'wireframe off'
-!      write(27,*)'ribbon'
-!      write(27,*)'color chain'
-
+      if (iras==1)then
+      write(27,829)'load pdb ',pdbnat
+      write(27,*)'wireframe off'
+      write(27,*)'ribbon'
+      write(27,*)'color chain'
+      endif
 
 !      print*,ind1,ind2
 
@@ -320,6 +347,11 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
              icontN = icontN + 1                ! iresB(i)-chstB(i) and iresB(j)-chstB(j) are in contact
              nintAfnat(icontN) = iresB(i)
              nintBfnat(icontN) = iresB(j)
+
+             if (iras==1)then
+             call rasgen(nintAfnat(icontN),nintBfnat(icontN),res1,res2,
+     &chain1,chain2)
+             endif
 
 !             print*,iresA(i),chstA(i),i1,iresA(j),chstA(j),j1,icontM
 !             print*,nintAfnat(icontN),chstA(i),
@@ -523,12 +555,12 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 829   format(a9,a80)
 
-99    format(a7,i3,a6,a1,a5,'*',a3)
-856   format(a9)
-91    format(i4,2x,a1,5x,i4,2x,a1,2x,i5)
-92    format(i3,a1,a3,a1,a1,2x,i3,a1,a3,a1,a1)
-93    format(a3,2x,i4,2x,a1,5x,i4,2x,a1,2x,i5)
-95    format(i3,a1,a3,a1,a1)
+!99    format(a7,i3,a6,a1,a5,'*',a3)
+!856   format(a9)
+!91    format(i4,2x,a1,5x,i4,2x,a1,2x,i5)
+!92    format(i3,a1,a3,a1,a1,2x,i3,a1,a3,a1,a1)
+!93    format(a3,2x,i4,2x,a1,5x,i4,2x,a1,2x,i5)
+!95    format(i3,a1,a3,a1,a1)
 
 !      print*,'Total number of int res',iint
 
@@ -836,6 +868,25 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       scaled_irms = 1/(1+(irms/d2)**2)
       DockQ = (fnat + scaled_lrms + scaled_irms)/float(3)
 
+
+
+      if(fnat < 0.1 .or. (LRMS > 10 .and. iRMS > 4.0))then
+      capstatO= 'Incorrect'
+      elseif((fnat >= 0.1 .and. fnat < 0.3) .and. 
+     &(LRMS <= 10.0 .or. iRMS <= 4.0) .or. 
+     &(fnat >= 0.3 .and. LRMS > 5.0 .and. iRMS > 2.0))then
+      capstatO= 'Acceptable'
+      elseif((fnat >= 0.3 .and. fnat < 0.5) .and. 
+     &(LRMS <= 5.0 .or. iRMS <= 2.0).or. 
+     &(fnat >= 0.5 .and. LRMS > 1.0 .and. iRMS > 1.0))then
+      capstatO= 'Medium'
+      elseif(fnat >= 0.5 .and. (LRMS <= 1.0 .or. iRMS <= 1.0))then
+      capstatO= 'High'
+      else
+      capstatO= 'Undef'
+      endif
+
+
       c1 = 0.23
       c2 = 0.49
       c3 = 0.80
@@ -862,12 +913,25 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       write(*,234)fnat,lrms,irms,DockQ
 234   format('Fnat=',f8.3'  LRMS_bb=',f12.3,'  IRMS=',f12.3,
      &'  DockQ=',f12.5)
-      write(245,246)capstat
+      write(*,247)capstatO
       write(*,246)capstat
+      print*,'outfile: fort.245'
+      close(245)
+      print*,'rename the outfile as you wish'
+      if (iras==1)then
+      print*,'--------------------------------------------------'
+      print*,'Input (fort.23) generated for the rasmol script'
+      call system ('ls fort.23')
+      call system ('ls fort.27')
+      print*,'View the interfacial residues : rasmol -script fort.27'
+      print*,'To construct the interface contact network:'
+      print*,'run: PERL-scripts/createrasscript.pl <native.pdb>' 
+      print*,'Then run: rasmol -script <native.pdb.spt>'
+      print*,'--------------------------------------------------'
+      endif
 
-246   format('CAPRI_class (DockQ): ',a20)
-
-
+247   format('CAPRI_class (fnat, iRMS, LRMS): ',a20)
+246   format('CAPRI_class (DockQ)           : ',a20)
 
 !=====================================================================
 !=====================================================================
@@ -895,6 +959,41 @@ c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 c^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  9999 END
+
+      subroutine rasgen(nA,nB,res1,res2,chain1,chain2)
+      character(1)::chain1,chain2
+      character(3)::res1,res2
+             write(27,99)'select ',nA,' and :',chain1,
+     &' and ','.ca'
+             write(27,856)'spacefill'
+             write(27,*)'color white'
+             write(27,99)'select ',nB,' and :',chain2,
+     &' and ','.ca'
+             write(27,856)'spacefill'
+             write(27,*)'color white'
+
+             write(23,92)nA,'-',res1,'-',chain1,
+     &nB,'-',res2,'-',chain2
+!             write(26,95)nA,'-',res1,'-',chain1
+!             write(26,95)nB,'-',res2,'-',chain2
+             write(27,99)'select ',nA,' and :',chain1,
+     &' and ','.ca'
+             write(27,856)'spacefill'
+             write(27,*)'color white'
+             write(27,99)'select ',nB,' and :',chain2,
+     &' and ','.ca'
+             write(27,856)'spacefill'
+             write(27,*)'color white'
+99    format(a7,i3,a6,a1,a5,'*',a3)
+856   format(a9)
+91    format(i4,2x,a1,5x,i4,2x,a1,2x,i5)
+92    format(i3,a1,a3,a1,a1,2x,i3,a1,a3,a1,a1)
+93    format(a3,2x,i4,2x,a1,5x,i4,2x,a1,2x,i5)
+95    format(i3,a1,a3,a1,a1)
+             return
+        end
+
+
 
       subroutine caldist(x1,y1,z1,x2,y2,z2,d)
       dxsq=(x1-x2)*(x1-x2)

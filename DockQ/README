@@ -17,7 +17,11 @@
 # =====================================================================================================================================================
 #
 #
-# USAGE: ./DockQ.exe model.pdb native.pdb 
+# USAGE (Default) : ./DockQ.exe model.pdb native.pdb 
+# USAGE (Optional): ./DockQ.exe model.pdb native.pdb -ras 1 : generates input (fort.23) to the rasmol script 
+# then run: PERL-scripts/createrasscript.pl native.pdb
+# and view the native interface contact network by rasmol -script native.pdb.spt
+# see example in : PERL-scripts/rasint_example.png
 #
 #
 # sample output: 
