@@ -6,8 +6,8 @@ Requires a fortran90 compiler (prefered: ifort)
 Installation
 
 git clone https://github.com/nemo8130/DockQ-fortran-code
-cd DockQ-fortran-code
-cd DockQ
+
+cd DockQ-fortran-code/DockQ
 
 ./install.bash (fortran90 compiler; Default: ifort)
 
