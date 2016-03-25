@@ -9,9 +9,10 @@ git clone https://github.com/nemo8130/DockQ-fortran-code
 
 cd DockQ-fortran-code/DockQ
 
-./install.bash <fortran90-compiler>  (Default: ifort)
+`./install.bash <fortran90-compiler>`  (Default: ifort)
 
-Run with ./DockQ.exe <model> <native>
+Run with 
+`./DockQ.exe <model> <native>`
 
 Example
 
